@@ -4,15 +4,33 @@
 
 
 body{
-    @apply   bg-gray-800 text-center text-gray-400 text-xl 
+    @apply   bg-gray-800  text-gray-400 text-xl 
    }
 
 .form-control{
-    @apply m-3 rounded-lg pl-4
+    @apply my-3  rounded-lg pl-4
 }
 .bg-img{
     background-image: url('/static/img/bg.png');    
     height: 100vh;
     background-size: cover;
 }
-   
+
+ .success {
+    @apply bg-green-100 
+ } 
+ .danger {
+    @apply bg-rose-100 
+ } 
+ .warning {
+    @apply bg-yellow-100 
+ } 
+ .debug {
+    @apply bg-gray-100 
+ }  
+ .info {
+    @apply bg-sky-100 
+ } 
+ .alert {
+    @apply py-2 text-center text-black font-bold rounded-md w-8/12
+ }
