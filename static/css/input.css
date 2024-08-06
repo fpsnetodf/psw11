@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+    @apply   bg-gray-800 text-center text-gray-400 text-xl 
+   }
+
+.form-control{
+    @apply m-3 rounded-lg pl-4
+}
+.bg-img{
+    background-image: url('/static/img/bg.png');    
+    height: 100vh;
+    background-size: cover;
+}
+   

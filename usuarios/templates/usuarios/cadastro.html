@@ -1,0 +1,53 @@
+{% extends "usuarios/home.html" %}
+{% load static %}
+
+{% block head %}{% endblock head %}
+    
+{% block title %}Cadastro{% endblock title %}
+
+
+{% block nav %}{% endblock nav %}
+{% block titulo %}
+{% endblock titulo %}
+{% block conteudo %}
+<div >
+    <div class="grid grid-cols-6 gap-1">
+        <div class="col-span-1 bg-img">
+        </div>
+        <div class="col-span-4 ">
+            <div class="mt-20" >
+                {% if messages %}
+                <br>
+                {% for message in messages %}
+                <section class="{{message.tags}}">
+                    {{message}}
+                </section>
+                {% endfor %}
+                {% endif %}
+                
+   
+    <h1 class="text-center text-6xl text-rose-300 ">START.SE</h1>
+    <h1 class="text-2xl text-green-300">Cadastre-se</h1>
+    <br>
+    <form action="{% url 'cadastro' %}" method="POST">{% csrf_token %}
+        <label>Username</label>
+        <input type="text" class="form-control" name="username" placeholder="Digite seu username">
+        <br>
+        <label>Senha</label>
+        <input type="password" class="form-control" name="senha" placeholder="Digite sua senha">
+        <br>
+        <label>Confirmar senha</label>
+        <input type="password" class="form-control" name="confirmar_senha" placeholder="Confirme sua senha">
+        <div class="centralizar">
+        <input type="submit" class="bg-green-400 px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white mt-4" value="Cadastrar">
+        <a href="#" class="texto">Já possuo uma conta</a>
+        </div>
+    </form>
+    </div>
+    </div>    
+    </div>
+   </div>
+   
+{% endblock conteudo %}
+{% block footer %}{% endblock footer %}
+{% block scritps %}{% endblock scritps %}
