@@ -10,31 +10,34 @@
 {% block titulo %}
 {% endblock titulo %}
 {% block conteudo %} 
-<div >
-    <div class="grid grid-cols-6 gap-1">
+
+<div class="grid grid-cols-6 gap-1">
     <div class="col-span-1 bg-img">
     </div>
     <div class="col-span-3">
-    <div class="container-form mt-20">
+    <div class="mt-20">
     <h1 class="text-center text-6xl text-rose-300 mt-20">START.SE</h1>
     <h1 class="text-green-400 font-bold text-lg">Logar</h1>
-    {% if messages %}
-    {% for message in messages %}
-    <section class="alert {{message.tags}}">
-    {{message}}
-    </section>
-    {% endfor %}
-    {% endif %}
+        {% if messages %}
+            {% for message in messages %}
+            <section class="alert {{message.tags}}">
+                {{message}}
+            </section>
+            {% endfor %}
+        {% endif %}
     <br>
+    
     <form action="{% url 'logar' %}" method="POST">{% csrf_token %}
-    <label>Username</label>
-    <br>
-    <input type="text" class="form-control input-pers" name="username" placeholder="Digite seu username">
-    <br>
+    <div class="">
+        <label class="">Username</label>
+        <br>
+    </div>
+        <input type="text" class="rounded-md px-4 hover:ring-4 hover:ring-gray-500 " name="username" placeholder="Digite seu username">
+        <br>
     <label>Senha</label>
     <br>
-    <input type="password" class="form-control input-pers" name="senha" placeholder="Digite sua senha">
-    <div class="centralizar">
+    <input type="password" class="rounded-md px-4 hover:ring-4 hover:ring-gray-500 " name="senha" placeholder="Digite sua senha">
+    <div class="mt-10">
     <input type="submit" class="bg-sky-400 w-60 rounded-lg hover:bg-sky-600 hover:text-black text-white mb-4" value="Logar">
     <br>
     <a href="" class="font-bold text-white text-xl ">Não possuo uma conta</a>
@@ -42,9 +45,8 @@
     </form>
     </div>
     </div>
-    
     </div>
-   </div>
+   
    
 {% endblock conteudo%}
 {% block footer %}{% endblock footer %}
