@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Empresas
 from django.contrib.messages import add_message , constants
-# Create your views here.
+from django.http import HttpResponse
 
 
 def empresarios(request):
@@ -9,8 +9,10 @@ def empresarios(request):
 
 
 def cadastrar_empresa(request):
+ if not request.user.is_authenticated:
+    return redirect("/logar/")
  if request.method == "GET":
-    return render(request, 'cadastrar_empresa.html', {'tempo_existencia': Empresas.tempo_existencia_choices, 'areas': Empresas.area_choices })
+    return render(request, 'empresarios/cadastrar_empresa.html', {'tempo_existencia': Empresas.tempo_existencia_choices, 'areas': Empresas.area_choices })
  elif request.method == "POST":
     nome = request.POST.get('nome')
     cnpj = request.POST.get('cnpj')
@@ -49,3 +51,18 @@ def cadastrar_empresa(request):
  
  add_message(request, constants.SUCCESS, 'Empresa criada com sucesso')
  return redirect('/empresarios/cadastrar_empresa')
+
+
+def listar_empresas(request):
+   if not request.user.is_authenticated:
+    # Todo lista o filtro das empresas
+    return redirect("/logar/")
+   if request.method == "GET":
+      empresas = Empresas.objects.filter(user=request.user)
+      return render(request, 'empresarios/listar_empresas.html', {"empresas": empresas})
+   
+
+def empresa(request, id):
+   empresa = Empresas.objects.get(id=id)
+   
+   return render(request, "empresarios/empresa.html")

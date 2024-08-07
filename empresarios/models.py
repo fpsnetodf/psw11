@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import date
+from django.utils.safestring import mark_safe
 
 # Create your models here.
 
@@ -37,3 +39,10 @@ class Empresas(models.Model):
     logo = models.FileField(upload_to='logo')
     def __str__(self):
         return f'{self.user.username} | {self.nome}'
+    
+    @property
+    def status(self):
+        if date.today() > self.data_final_captacao :
+            return mark_safe("<span class='bg-green-300 text-black font-bold px-4 py-2 rounded-lg'>Captação finalizada</span>")
+        
+        return mark_safe("<span class='bg-sky-300 font-bold px-4 py-2 rounded-lg'>Em Captação</span>")

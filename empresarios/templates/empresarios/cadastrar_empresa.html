@@ -1,25 +1,24 @@
-{% extends "usuarios/home.html" %}
+{% extends "empresarios/modelo.html" %}
 {% load static %}
 
 {% block head %}{% endblock head %}
 
 {% block title %}Cadastrar Empresa{% endblock title %}
 
-
 {% block nav %}{% endblock nav %}
 {% block titulo %}
-<h1 class="text-center text-4xl text-violet-500">Pagina Cadastra Empresa</h1>
+    <h1 class="text-center text-4xl text-violet-500">Pagina Cadastra Empresa</h1>
 {% endblock titulo %}
 {% block conteudo %}
 <div class="container">
     <br>
     <br>
     {% if messages %}
-    {% for message in messages %}
-    <section class="alert {{message.tags}}">
-    {{message}}
-    </section>
-    {% endfor %}
+        {% for message in messages %}
+            <section class="alert {{message.tags}}">
+            {{message}}
+            </section>
+        {% endfor %}
     {% endif %}
     <div class="row">
     <div class="col-md">
@@ -86,6 +85,10 @@
         <br>
         <label>Envie a logo da empresa</label>
         <input type="file" name="logo" class="form-control">
+        <br><br>
+        <div class="grid grid-rows-1 grid-cols-5 ">
+            <input class="col-span-1 mx-auto items-end text-2xl font-bold text-gray-400 bg-green-400 px-4 py-2 hover:text-black hover:bg-green-300 rounded-lg" type="submit"  value="Cadastrar">
+        </div>
         </form>
         </div>
         </div>
