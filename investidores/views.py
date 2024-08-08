@@ -2,7 +2,7 @@ from django.shortcuts import render
 from empresarios.models import Empresas
 
 # Create your views here.
-def sugestao(request):
+def sugestao(request):   
     areas = Empresas.area_choices
     if request.method == "GET":   
         return render(request, 'investidores/sugestao.html', {'areas': areas})
