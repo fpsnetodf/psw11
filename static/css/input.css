@@ -100,4 +100,8 @@ body{
    background-color: var(--dark-color);
    padding: 20px;
    
+} 
+
+label{
+   @apply text-white text-2xl font-bold
 }

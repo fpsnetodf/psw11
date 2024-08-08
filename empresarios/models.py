@@ -46,3 +46,26 @@ class Empresas(models.Model):
             return mark_safe("<span class='bg-green-300 text-black font-bold px-4 py-2 rounded-lg'>Captação finalizada</span>")
         
         return mark_safe("<span class='bg-sky-300 font-bold px-4 py-2 rounded-lg'>Em Captação</span>")
+    
+    def valuation(self):
+        return f"{(100 * self.valor) / self.percentual_equity:.2f}"
+    
+    
+    
+    
+class Documento(models.Model):
+    empresa = models.ForeignKey(Empresas, on_delete=models.DO_NOTHING)
+    titulo = models.CharField(max_length=30)
+    arquivo = models.FileField(upload_to="documentos")
+
+    def __str__(self):
+        return self.titulo
+    
+    
+class Metricas(models.Model):
+    empresa = models.ForeignKey(Empresas, on_delete=models.DO_NOTHING)
+    titulo = models.CharField(max_length=30)
+    valor = models.FloatField()
+
+    def __str__(self):
+        return self.titulo
