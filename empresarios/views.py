@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Empresas, Documento, Metricas
 from django.contrib.messages import add_message , constants
+from investidores.models import PropostaInvestimento
 from django.http import HttpResponse
 
 
@@ -58,7 +59,12 @@ def listar_empresas(request):
     # Todo lista o filtro das empresas
     return redirect("/logar/")
    if request.method == "GET":
-      empresas = Empresas.objects.filter(user=request.user)
+      empresa = request.GET.get("empresa")      
+      if empresa :
+         empresas = Empresas.objects.filter(nome__icontains=empresa) 
+      else:
+         empresas = Empresas.objects.filter(user=request.user)
+      # empresas = Empresas.objects.filter(nome__icontains=empresa) | Empresas.objects.filter(user=request.user)
       return render(request, 'empresarios/listar_empresas.html', {"empresas": empresas})
    
 
@@ -69,9 +75,19 @@ def empresa(request, id):
       return redirect(f"/empresa/{id}") 
    
    if request.method == "GET":
-      documentos = Documento.objects.filter(empresa=empresa)  
-      return render(request, "empresarios/empresa.html", {"empresa" : empresa, "documentos": documentos })
-
+      documentos = Documento.objects.filter(empresa=empresa) 
+      proposta_investimentos = PropostaInvestimento.objects.filter(empresa=empresa)
+      percentual_vendido = 0
+      free = int(empresa.valuation()* 0.001)
+      print("free", free)
+      for pi in proposta_investimentos:
+         print(pi)
+         if pi.status == "PA":
+            percentual_vendido += pi.percentual
+         print("vendido % ",percentual_vendido)
+      proposta_investimentos_enviada = proposta_investimentos.filter(status='PE') 
+      return render(request, "empresarios/empresa.html", {"empresa" : empresa, "documentos": documentos, "proposta_investimentos_enviada": proposta_investimentos_enviada, "percentual_vendido": int(percentual_vendido) })
+      
 def add_doc(request, id):
    empresa = Empresas.objects.get(id=id)
    titulo = request.POST.get('titulo')
@@ -125,6 +141,11 @@ def add_metrica(request, id):
 
     add_message(request, constants.SUCCESS, "Métrica cadastrada com sucesso")
     return redirect(f'/empresa/{empresa.id}')
+
+
+def gerenciar_proposta(request, id):
+   acao = request.GET.get("acao")
+   return HttpResponse(acao)
  
  
 

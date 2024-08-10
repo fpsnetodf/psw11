@@ -1,0 +1,57 @@
+{% extends "empresarios/modelo.html" %}
+#
+{% load static %}
+
+{% block title %}Assinar contrato{% endblock title %}
+
+{% block titulo %}
+    {% include "empresarios/navbar.html" %}
+{% endblock titulo %}
+
+{% block conteudo %}
+    <br><br>
+    <div class="container">
+        <div class="flex-row">
+            <div class="col-span-7">
+                <div class="row">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <section class="alert {{message.tags}}">
+                                {{message}}
+                            </section>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="col-span-2">
+                        <img src="{% static '/img/foto_perfil.webp' %}" class="foto-empresa" alt="">
+                    </div>
+                    <div class="col-span-2">
+                        <h3 class="text-4xl text-center text-violet-800">Assinar contrato</h3>
+                    </div>
+                </div>
+            </div>
+            <div  class="mt-10 p-5 text-white bg-gray-700 ">
+                <h3>Contrato de investimento</h3>
+                <p>Ao assinar esse contrato você concorda com todas as cláusulas abaixo</p>
+
+                <ol>
+                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</li>
+                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</li>
+                    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</li>
+                </ol>
+
+            </div>
+            <form action="{% url 'assinar_contrato' id %}" enctype='multipart/form-data' method="POST" style="margin-top: 20px;"> {% csrf_token %}
+                <input type="file" name="selfie" class="w-9/12 m-4 hover:ring-1" >
+                <br>
+                <input type="file" name="rg" class="w-9/12 m-4 hover:ring-1">
+                <br>
+                <div class="text-center">
+                    <input type="submit" class="hover:bg-green-400 text-black hover:text-white bg-green-300 rounded-lg px-4 py-2" value="Assinar contrato">
+                </div>
+            </form>
+        </div>
+        <br><br>
+{% endblock conteudo %}
+
+{% block footer %}{% endblock footer %}
+{% block scritps %}{% endblock scritps %}

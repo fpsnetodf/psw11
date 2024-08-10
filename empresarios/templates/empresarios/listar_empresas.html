@@ -1,8 +1,9 @@
 {% extends "empresarios/modelo.html" %}
+#
 {% load static %}
 
-
 {% block title %}Listar Empresas{% endblock title %}
+
 {% block titulo %}
     {% include "empresarios/navbar.html" %}
 {% endblock titulo %}
@@ -13,48 +14,40 @@
         <div class="row">
             <div class="col-md-4">
                 <form action="{% url 'listar_empresas' %}" method="GET">
-                <label>Empresa</label><br>
-                <input type="text" name="empresa" class="px-4 py-1 hover:ring-4 hover:ring-green-200 rounded-lg" placeholder="Busque por uma empresa em específico">
-            
-            
-                <input type="submit" value="filtrar" class="ms-4 ring-2 px-4 py-2 text-bold text-blue-900 rounded-sm hover:bg-sky-400 hover:text-black font-semibold">
+                    <label>Empresa</label><br>
+                    <input type="text" name="empresa" class="px-4 py-1 hover:ring-4 hover:ring-green-200 rounded-lg" placeholder="Busque por uma empresa em específico">
+                    <input type="submit" value="filtrar" class="ms-4 ring-2 px-4 py-2 text-bold text-blue-900 rounded-lg hover:bg-sky-400 hover:text-black font-semibold">
                 </form>
             </div>
         </div>
-
     </div>
     <br>
     <div class="container dark-color container_empresas">
         <table class="table">
             <thead >
-              <tr class="cabecalho" >
-                <th class="mx-4 text-green-700 px-4" scope="col">Nome</th>
-                <th class="mx-4 text-green-700 px-4" scope="col">Percentual captado</th>
-                <th class="mx-4 text-green-700 px-4" scope="col">Status</th>
-                <th class="mx-4 text-green-700 px-4" scope="col">Ação</th>
-              </tr>
+                <tr class="cabecalho" >
+                    <th class="mx-4 text-green-700 px-4" scope="col">Nome</th>
+                    <th class="mx-4 text-green-700 px-4" scope="col">Percentual captado</th>
+                    <th class="mx-4 text-green-700 px-4" scope="col">Status</th>
+                    <th class="mx-4 text-green-700 px-4" scope="col">Ação</th>
+                </tr>
             </thead>
             <tbody>
                 {% for empresa in empresas %}
-                    <tr class="linha">
+                    <tr class="m-20">
                         <td class="linha">{{ empresa.nome }}</td>
                         <td class="linha">
                             <div class="progress">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                        </td>
-                        <td class="bg-rose-300 ">{{ empresa.status }}</td>
-                        <td class="mx-12 px-6"><a href="{% url 'empresa' empresa.id %}" class="bg-sky-400 text-white font-bold hover:bg-sky-600 hover:text-black px-4 py-2 rounded-lg">Abrir</a></td>
-                    </tr>
+                        </td>                        
+                        <td class="">{{ empresa.status }}</td>
+                        <td class="px-4 py-2"><a href="{% url 'empresa' empresa.id %}" class="bg-sky-400 text-white font-bold hover:bg-sky-600 hover:text-black px-4 py-2 rounded-lg">Abrir</a></td>
+                    </tr>                    
                 {% endfor %}
-                
-                    
-              
             </tbody>
-          </table>
-
+        </table>
     </div>
-
 {% endblock conteudo %}
 
 

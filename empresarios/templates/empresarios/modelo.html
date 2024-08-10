@@ -1,23 +1,23 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% block head %}{% endblock head %}
-    <title>
-        {% block title %}home{% endblock title %}
-    </title>
-</head>
-<body>
-    {% block nav %}{% endblock nav %}
-    {% block titulo %}
-        <h1 class="text-center text-4xl text-violet-500">Pagina Home</h1>
-    {% endblock titulo %}
-    {% block conteudo %}{% endblock conteudo %}
-    {% block footer %}{% endblock footer %}
-    {% block scritps %}{% endblock scritps %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+        {% block head %}{% endblock head %}
+        <title>
+            {% block title %}home{% endblock title %}
+        </title>
+    </head>
+    <body>
+        {% block nav %}{% endblock nav %}
+        {% block titulo %}
+            <h1 class="text-center text-4xl text-violet-500">Pagina Home</h1>
+        {% endblock titulo %}
+        {% block conteudo %}{% endblock conteudo %}
+        {% block footer %}{% endblock footer %}
+        {% block scritps %}{% endblock scritps %}
 
-</body>
+    </body>
 </html>

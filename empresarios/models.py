@@ -43,12 +43,12 @@ class Empresas(models.Model):
     @property
     def status(self):
         if date.today() > self.data_final_captacao :
-            return mark_safe("<span class='bg-green-300 text-black font-bold px-4 py-2 rounded-lg'>Captação finalizada</span>")
+            return mark_safe("<span class='bg-green-300 text-black font-bold px-4 py-1 rounded-lg'>Captação finalizada</span>")
         
-        return mark_safe("<span class='bg-sky-300 font-bold px-4 py-2 rounded-lg'>Em Captação</span>")
+        return mark_safe("<span class='bg-gray-700 font-bold px-4 py-1 rounded-lg'>Em Captação</span>")
     
     def valuation(self):
-        return f"{(100 * self.valor) / self.percentual_equity:.2f}"
+        return float(f"{(100 * self.valor) / self.percentual_equity:.2f}")
     
     
     

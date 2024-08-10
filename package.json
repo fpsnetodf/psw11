@@ -4,6 +4,7 @@
   },
   "scripts": {
     "dev": "npx tailwindcss -i static/css/input.css -o static/css/style.css --watch", 
+    "dev2": "npx tailwindcss -i ./static/css/input.css -o ./static/css/tailwind.css --watch",
     "server": "python3 manage.py runserver", 
     "pdb": "python3 manage.py makemigrations && python3 manage.py migrate"
   }
